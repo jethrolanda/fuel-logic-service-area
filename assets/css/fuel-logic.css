@@ -1,0 +1,10 @@
+.fuel-logic-service-area-form-wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.fuel-logic-service-area-form-wrap #zipcode {
+	width: 400px;
+	max-width: 100%;
+}
