@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: 	Fuel Logic Service Area
  * Plugin URI:
@@ -32,9 +33,9 @@
  */
 
 
-if ( ! function_exists( 'add_filter' ) ) {
-	header( 'Status: 403 Forbidden' );
-	header( 'HTTP/1.1 403 Forbidden' );
+if (! function_exists('add_filter')) {
+	header('Status: 403 Forbidden');
+	header('HTTP/1.1 403 Forbidden');
 	exit();
 }
 
@@ -45,19 +46,25 @@ if ( ! function_exists( 'add_filter' ) ) {
  *
  * @since  1.0.0
  */
-function fl_php_version_notices() {
+function fl_php_version_notices()
+{
 
-	?><div class='updated'>
-		<p><?php echo sprintf( __( 'Fuel Logic Service Area requires PHP 7 or higher and your current PHP version is %s. Please (contact your host to) update your PHP version.', 'fuel-logic-service-area' ), PHP_VERSION ); ?></p>
+?><div class='updated'>
+		<p><?php echo sprintf(__('Fuel Logic Service Area requires PHP 7 or higher and your current PHP version is %s. Please (contact your host to) update your PHP version.', 'fuel-logic-service-area'), PHP_VERSION); ?></p>
 	</div><?php
 
-}
+			}
 
-if ( version_compare( PHP_VERSION, '7', 'lt' ) ) {
-	add_action( 'admin_notices', 'fl_php_version_notices' );
-	return;
-}
+			if (version_compare(PHP_VERSION, '7', 'lt')) {
+				add_action('admin_notices', 'fl_php_version_notices');
+				return;
+			}
 
 
-define( 'FUEL LOGIC SERVICE AREA_FILE', __FILE__ );
-require 'fuel-logic-service-area.php';
+			define('FUEL LOGIC SERVICE AREA_FILE', __FILE__);
+			define('PLUGIN_URL',            plugins_url() . '/fuel-logic-service-area/');
+			define('PLUGIN_DIR',            plugin_dir_path(__FILE__));
+			define('BLOCKS_ROOT_URL',       PLUGIN_URL . 'blocks/');
+			define('BLOCKS_ROOT_DIR',       PLUGIN_DIR . 'blocks/');
+
+			require 'fuel-logic-service-area.php';

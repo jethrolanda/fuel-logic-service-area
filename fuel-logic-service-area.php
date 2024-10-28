@@ -1,8 +1,10 @@
 <?php
+
 namespace Fuel_Logic_Service_Area;
 
 
-class Fuel_Logic_Service_Area {
+class Fuel_Logic_Service_Area
+{
 
 	public $version = '1.0.0';
 
@@ -16,10 +18,26 @@ class Fuel_Logic_Service_Area {
 	 *
 	 * @since  1.0.0
 	 */
-	public function __construct() {
-
+	public function __construct()
+	{
+		add_action('init', array($this, 'create_block_blocks_block_init'));
 	}
 
+
+	/**
+	 * Registers the block using the metadata loaded from the `block.json` file.
+	 * Behind the scenes, it registers also all assets so they can be enqueued
+	 * through the block editor in the corresponding context.
+	 *
+	 * @see https://developer.wordpress.org/reference/functions/register_block_type/
+	 */
+	public function create_block_blocks_block_init()
+	{
+		register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_zipcode_form');
+		register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_map');
+		register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_order_form');
+		register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_zipcode');
+	}
 
 	/**
 	 * Instance.
@@ -30,14 +48,14 @@ class Fuel_Logic_Service_Area {
 	 * @since  1.0.0
 	 * @return  object Instance of the class.
 	 */
-	public static  function instance() {
+	public static  function instance()
+	{
 
-		if ( is_null( self::$instance ) ) {
+		if (is_null(self::$instance)) {
 			self::$instance = new self();
 		}
 
 		return self::$instance;
-
 	}
 
 
@@ -46,7 +64,8 @@ class Fuel_Logic_Service_Area {
 	 *
 	 * @since  1.0.0
 	 */
-	public function init() {
+	public function init()
+	{
 
 		// Load textdomain
 		$this->load_textdomain();
@@ -58,7 +77,7 @@ class Fuel_Logic_Service_Area {
 		$this->add_shortcodes();
 
 		// Admin
-		if ( is_admin() ) {
+		if (is_admin()) {
 			$this->admin = new \Fuel_Logic_Service_Area\Admin\Admin();
 			$this->admin->init();
 		}
@@ -72,14 +91,14 @@ class Fuel_Logic_Service_Area {
 	 *
 	 * @since  1.0.0
 	 */
-	public function load_textdomain() {
+	public function load_textdomain()
+	{
 
-		$locale = apply_filters( 'plugin_locale', get_locale(), 'fuel-logic-service-area' );
+		$locale = apply_filters('plugin_locale', get_locale(), 'fuel-logic-service-area');
 
 		// Load textdomain
-		load_textdomain( 'fuel-logic-service-area', WP_LANG_DIR . '/fuel-logic-service-area/fuel-logic-service-area-' . $locale . '.mo' );
-		load_plugin_textdomain( 'fuel-logic-service-area', false, basename( dirname( __FILE__ ) ) . '/languages' );
-
+		load_textdomain('fuel-logic-service-area', WP_LANG_DIR . '/fuel-logic-service-area/fuel-logic-service-area-' . $locale . '.mo');
+		load_plugin_textdomain('fuel-logic-service-area', false, basename(dirname(__FILE__)) . '/languages');
 	}
 
 
@@ -90,17 +109,17 @@ class Fuel_Logic_Service_Area {
 	 *
 	 * @since  1.0.0
 	 */
-	public function includes() {
+	public function includes()
+	{
 
-		require_once plugin_dir_path( $this->file ) . 'fuel-logic-service-area.php';
-		require_once plugin_dir_path( $this->file ) . 'includes/admin/admin.php';
-		require_once plugin_dir_path( $this->file ) . 'includes/core-functions.php';
-		require_once plugin_dir_path( $this->file ) . 'includes/template-functions.php';
-		require_once plugin_dir_path( $this->file ) . 'includes/shortcodes/zipcode-check-form.php';
-		require_once plugin_dir_path( $this->file ) . 'includes/shortcodes/map.php';
-		require_once plugin_dir_path( $this->file ) . 'includes/shortcodes/fuel-order-form.php';
-		require_once plugin_dir_path( $this->file ) . 'includes/shortcodes/zipcode.php';
-
+		require_once plugin_dir_path($this->file) . 'fuel-logic-service-area.php';
+		require_once plugin_dir_path($this->file) . 'includes/admin/admin.php';
+		require_once plugin_dir_path($this->file) . 'includes/core-functions.php';
+		require_once plugin_dir_path($this->file) . 'includes/template-functions.php';
+		require_once plugin_dir_path($this->file) . 'includes/shortcodes/zipcode-check-form.php';
+		require_once plugin_dir_path($this->file) . 'includes/shortcodes/map.php';
+		require_once plugin_dir_path($this->file) . 'includes/shortcodes/fuel-order-form.php';
+		require_once plugin_dir_path($this->file) . 'includes/shortcodes/zipcode.php';
 	}
 
 
@@ -111,16 +130,14 @@ class Fuel_Logic_Service_Area {
 	 *
 	 * @since  1.0.0
 	 */
-	public function add_shortcodes() {
+	public function add_shortcodes()
+	{
 
-		add_shortcode( 'fuel_logic_zipcode_form', array( new \Fuel_Logic_Service_Area\Shortcodes\Zipcode_Check_Form(), 'output' ) );
-		add_shortcode( 'fuel_logic_map', array( new \Fuel_Logic_Service_Area\Shortcodes\Map(), 'output' ) );
-		add_shortcode( 'fuel_logic_order_form', array( new \Fuel_Logic_Service_Area\Shortcodes\Fuel_Order_Form(), 'output' ) );
-		add_shortcode( 'fuel_logic_zipcode', array( new \Fuel_Logic_Service_Area\Shortcodes\Zipcode(), 'output' ) );
-
+		add_shortcode('fuel_logic_zipcode_form', array(new \Fuel_Logic_Service_Area\Shortcodes\Zipcode_Check_Form(), 'output'));
+		add_shortcode('fuel_logic_map', array(new \Fuel_Logic_Service_Area\Shortcodes\Map(), 'output'));
+		add_shortcode('fuel_logic_order_form', array(new \Fuel_Logic_Service_Area\Shortcodes\Fuel_Order_Form(), 'output'));
+		add_shortcode('fuel_logic_zipcode', array(new \Fuel_Logic_Service_Area\Shortcodes\Zipcode(), 'output'));
 	}
-
-
 }
 
 /**
@@ -134,7 +151,8 @@ class Fuel_Logic_Service_Area {
  *
  * @return Fuel_Logic_Service_Area Return the singleton Fuel_Logic_Service_Area object.
  */
-function Fuel_Logic_Service_Area() {
+function Fuel_Logic_Service_Area()
+{
 	return Fuel_Logic_Service_Area::instance();
 }
 Fuel_Logic_Service_Area()->init();
