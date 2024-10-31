@@ -12,32 +12,16 @@ class Fuel_Logic_Service_Area
 
 	private static  $instance;
 
+	private $blocks;
 
 	/**
 	 * Constructor.
 	 *
 	 * @since  1.0.0
 	 */
-	public function __construct()
-	{
-		add_action('init', array($this, 'create_block_blocks_block_init'));
-	}
+	public function __construct() {}
 
 
-	/**
-	 * Registers the block using the metadata loaded from the `block.json` file.
-	 * Behind the scenes, it registers also all assets so they can be enqueued
-	 * through the block editor in the corresponding context.
-	 *
-	 * @see https://developer.wordpress.org/reference/functions/register_block_type/
-	 */
-	public function create_block_blocks_block_init()
-	{
-		register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_zipcode_form');
-		register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_map');
-		register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_order_form');
-		register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_zipcode');
-	}
 
 	/**
 	 * Instance.
@@ -81,6 +65,8 @@ class Fuel_Logic_Service_Area
 			$this->admin = new \Fuel_Logic_Service_Area\Admin\Admin();
 			$this->admin->init();
 		}
+
+		$this->blocks = new \Fuel_Logic_Service_Area\Blocks\Blocks();
 	}
 
 
@@ -120,6 +106,7 @@ class Fuel_Logic_Service_Area
 		require_once plugin_dir_path($this->file) . 'includes/shortcodes/map.php';
 		require_once plugin_dir_path($this->file) . 'includes/shortcodes/fuel-order-form.php';
 		require_once plugin_dir_path($this->file) . 'includes/shortcodes/zipcode.php';
+		require_once plugin_dir_path($this->file) . 'includes/blocks.php';
 	}
 
 
