@@ -1,9 +1,9 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "fuel-logic-service-area/zipcode-form",
+  "name": "fuel-logic-service-area/map",
   "version": "0.1.0",
-  "title": "FL Service Area - Zipcode Form",
+  "title": "FL Service Area - Map",
   "category": "widgets",
   "icon": "media-interactive",
   "description": "An interactive block with the Interactivity API",

@@ -26,10 +26,9 @@ class Blocks
    */
   public function create_block_blocks_block_init()
   {
-    error_log(BLOCKS_ROOT_DIR);
-    register_block_type('/var/www/html/wp-content/plugins/fuel-logic-service-area/blocks/build/fuel_logic_zipcode_form');
-    // register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_map');
-    // register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_order_form');
-    // register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_zipcode');
+    register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_zipcode_form');
+    register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_map');
+    register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_order_form');
+    register_block_type(BLOCKS_ROOT_DIR . 'build/fuel_logic_zipcode');
   }
 }

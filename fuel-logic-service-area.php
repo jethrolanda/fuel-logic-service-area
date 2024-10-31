@@ -14,6 +14,8 @@ class Fuel_Logic_Service_Area
 
 	private $blocks;
 
+	private $admin;
+
 	/**
 	 * Constructor.
 	 *

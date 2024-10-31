@@ -28,9 +28,5 @@ import { useBlockProps } from "@wordpress/block-editor";
 export default function Edit({ attributes, setAttributes }) {
   const blockProps = useBlockProps();
 
-  return (
-    <p {...blockProps}>
-      {__("FL Service Area - Zip Code Form Block", "blocks")}
-    </p>
-  );
+  return <p {...blockProps}>{__("FL Service Area - Map Block", "blocks")}</p>;
 }

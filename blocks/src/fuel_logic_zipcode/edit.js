@@ -29,8 +29,6 @@ export default function Edit({ attributes, setAttributes }) {
   const blockProps = useBlockProps();
 
   return (
-    <p {...blockProps}>
-      {__("FL Service Area - Zip Code Form Block", "blocks")}
-    </p>
+    <p {...blockProps}>{__("FL Service Area - Zip Code Block", "blocks")}</p>
   );
 }
