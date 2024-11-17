@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Fuel logic Service Area
- * Description: FL Service ara.
+ * Description: FL Service area.
  * Version: 1.0
  * Author: Xammis
  * Author URI: https://xammis.com/

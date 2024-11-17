@@ -17,6 +17,17 @@ function is5digits(input) {
 }
 
 const { state, actions } = store("service-area", {
+  state: {
+    get hasResult() {
+      const context = getContext();
+      console.log(
+        (context.zipfound || context.zipinvalid || context.zipbanned) ?? false
+      );
+      return (
+        (context.zipfound || context.zipinvalid || context.zipbanned) ?? false
+      );
+    }
+  },
   actions: {
     *submit() {
       const context = getContext();
@@ -70,6 +81,18 @@ const { state, actions } = store("service-area", {
       // var url = new URL(state.current_url);
       // url.searchParams.set("zipcode", context.zipcode);
       // console.log(url);
+    },
+    *goBack() {
+      const { ref } = getElement();
+      const context = getContext();
+      const { actions } = yield import("@wordpress/interactivity-router");
+      yield actions.navigate(`${state.current_url}`);
+      context.zipfound = null;
+      context.zipinvalid = null;
+      context.zipbanned = null;
+      context.state = null;
+      context.zipcode = null;
+      console.log(ref);
     }
   },
   callbacks: {
