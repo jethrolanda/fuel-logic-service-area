@@ -31,9 +31,6 @@ require_once 'inc/autoloader.php';
 // State Zipcodes
 require_once 'inc/state-zipcodes.php';
 
-// Require settings
-require_once 'settings/my-first-gutenberg-app.php';
-
 // Run
 require_once 'fuel-logic-service-area.plugin.php';
 $GLOBALS['flsa'] = new Fuel_Logic_Service_Area();
