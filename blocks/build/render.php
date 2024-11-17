@@ -28,10 +28,10 @@ $context = array(
   'zipbanned' => null,
   'state' => array(),
   'submitClicked' => false
-);
-// error_log(print_r($context, true));
-?>
+); ?>
+
 <div
+  style="max-width: 100%;"
   data-wp-interactive="service-area"
   data-wp-watch="callbacks.setGoogleMap"
   data-wp-init="callbacks.onLoad"
@@ -42,42 +42,13 @@ $context = array(
 
   <div data-wp-init--log="callbacks.toggleMessages" data-wp-bind--hidden="!context.showMessages">
     <div data-wp-bind--hidden="!context.zipfound">
-      <!-- <p data-wp-text="context.state.title"></p>
-      <p data-wp-text="context.state.code"></p> -->
-      <?php
-      $content = $attributes['successMessagePattern'];
-      echo get_post_field('post_content', $content);
-
-      // $page1 = get_posts([
-      //   'name'      => 'success-zipcode',
-      //   'post_type' => 'wp_block'
-      // ]);
-      // if ($page1) {
-      //   echo $page1[0]->post_content;
-      // }
-      ?>
+      <?php echo do_blocks(get_post_field('post_content', $attributes['successMessagePattern'])); ?>
     </div>
     <div data-wp-bind--hidden="!context.zipinvalid">
-      <?php echo get_post_field('post_content', $attributes['failMessagePattern']); ?>
+      <?php echo do_blocks(get_post_field('post_content', $attributes['failMessagePattern'])); ?>
     </div>
     <div data-wp-bind--hidden="!context.zipbanned">
-      <?php echo get_post_field('post_content', $attributes['bannedMessagePattern']); ?>
+      <?php echo do_blocks(get_post_field('post_content', $attributes['bannedMessagePattern'])); ?>
     </div>
-    <?php
-
-
-
-    // error_log(print_r($page, true));
-    // if (class_exists('WP_Block_Patterns_Registry')) {
-
-    //   // Replace 'my-pattern-slug' with your pattern's slug
-    //   $pattern = WP_Block_Patterns_Registry::get_instance()->get_registered('fuel-logic-service-area/success-zipcode');
-
-
-    //   if ($pattern && isset($pattern['content'])) {
-    //     echo do_blocks($pattern['content']);
-    //   }
-    // }
-    ?>
   </div>
 </div>

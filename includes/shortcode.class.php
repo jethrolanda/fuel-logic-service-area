@@ -22,6 +22,7 @@ class Shortcode
   public function __construct()
   {
     add_shortcode('flsa_map', array($this, 'wpdocs_bartag_func'));
+    add_shortcode('flsa_form', array($this, 'hubspot_form'));
   }
 
   /**
@@ -57,6 +58,19 @@ class Shortcode
             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBwHHnwIFReFPErGaAagIu881jQPRMFS8w
               &q=Space+Needle,Seattle+WA">
           </iframe>';
+    return ob_get_clean();
+  }
+
+  function hubspot_form($atts)
+  {
+    $atts = shortcode_atts(array(
+      'foo' => 'no foo',
+      'baz' => 'default baz'
+    ), $atts, 'bartag');
+
+    ob_start();
+
+    echo 'asdasd';
     return ob_get_clean();
   }
 }
