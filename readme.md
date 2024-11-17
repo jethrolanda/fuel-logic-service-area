@@ -4,21 +4,9 @@ Use the following shortcodes:
 
 ---
 
-### [fuel_logic_zipcode_form]
+## Plugin Blocks
 
-Form for zipcode check
-
-### [fuel_logic_map]
-
-Map output based on entered zipcode. To be used on the the 'serviceable area' page
-
-### [fuel_logic_order_form]
-
-The fuel order form from hsforms. To be used on the 'serviceable area' page
-
-### [fuel_logic_zipcode]
-
-Zipcode to output on the 'serviceable area' page
+This plugin uses Fuel Logic Service Area block.
 
 ## Zip File
 
