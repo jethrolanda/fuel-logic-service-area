@@ -1,147 +1,39 @@
 <?php
 
-namespace Fuel_Logic_Service_Area;
-
-
-class Fuel_Logic_Service_Area
-{
-
-	public $version = '1.0.0';
-
-	public $file = __FILE__;
-
-	private static  $instance;
-
-	private $blocks;
-
-	private $admin;
-
-	/**
-	 * Constructor.
-	 *
-	 * @since  1.0.0
-	 */
-	public function __construct() {}
-
-
-
-	/**
-	 * Instance.
-	 *
-	 * An global instance of the class. Used to retrieve the instance
-	 * to use on other files/plugins/themes.
-	 *
-	 * @since  1.0.0
-	 * @return  object Instance of the class.
-	 */
-	public static  function instance()
-	{
-
-		if (is_null(self::$instance)) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
-	}
-
-
-	/**
-	 * Initialize plugin parts.
-	 *
-	 * @since  1.0.0
-	 */
-	public function init()
-	{
-
-		// Load textdomain
-		$this->load_textdomain();
-
-		// Include files
-		$this->includes();
-
-		// Add shortcodes
-		$this->add_shortcodes();
-
-		// Admin
-		if (is_admin()) {
-			$this->admin = new \Fuel_Logic_Service_Area\Admin\Admin();
-			$this->admin->init();
-		}
-
-		$this->blocks = new \Fuel_Logic_Service_Area\Blocks\Blocks();
-	}
-
-
-	/**
-	 * Textdomain.
-	 *
-	 * Load the textdomain based on WP language.
-	 *
-	 * @since  1.0.0
-	 */
-	public function load_textdomain()
-	{
-
-		$locale = apply_filters('plugin_locale', get_locale(), 'fuel-logic-service-area');
-
-		// Load textdomain
-		load_textdomain('fuel-logic-service-area', WP_LANG_DIR . '/fuel-logic-service-area/fuel-logic-service-area-' . $locale . '.mo');
-		load_plugin_textdomain('fuel-logic-service-area', false, basename(dirname(__FILE__)) . '/languages');
-	}
-
-
-	/**
-	 * Include files.
-	 *
-	 * Include/require plugin files/classes.
-	 *
-	 * @since  1.0.0
-	 */
-	public function includes()
-	{
-
-		require_once plugin_dir_path($this->file) . 'fuel-logic-service-area.php';
-		require_once plugin_dir_path($this->file) . 'includes/admin/admin.php';
-		require_once plugin_dir_path($this->file) . 'includes/core-functions.php';
-		require_once plugin_dir_path($this->file) . 'includes/template-functions.php';
-		require_once plugin_dir_path($this->file) . 'includes/shortcodes/zipcode-check-form.php';
-		require_once plugin_dir_path($this->file) . 'includes/shortcodes/map.php';
-		require_once plugin_dir_path($this->file) . 'includes/shortcodes/fuel-order-form.php';
-		require_once plugin_dir_path($this->file) . 'includes/shortcodes/zipcode.php';
-		require_once plugin_dir_path($this->file) . 'includes/blocks.php';
-	}
-
-
-	/**
-	 * Add shortcodes
-	 *
-	 * Add the shortcodes to WordPress with their callbacks to be initialised.
-	 *
-	 * @since  1.0.0
-	 */
-	public function add_shortcodes()
-	{
-
-		add_shortcode('fuel_logic_zipcode_form', array(new \Fuel_Logic_Service_Area\Shortcodes\Zipcode_Check_Form(), 'output'));
-		add_shortcode('fuel_logic_map', array(new \Fuel_Logic_Service_Area\Shortcodes\Map(), 'output'));
-		add_shortcode('fuel_logic_order_form', array(new \Fuel_Logic_Service_Area\Shortcodes\Fuel_Order_Form(), 'output'));
-		add_shortcode('fuel_logic_zipcode', array(new \Fuel_Logic_Service_Area\Shortcodes\Zipcode(), 'output'));
-	}
-}
-
 /**
- * The main function responsible for returning the Fuel_Logic_Service_Area object.
- *
- * Use this function like you would a global variable, except without needing to declare the global.
- *
- * Example: <?php Fuel_Logic_Service_Area()->method_name(); ?>
- *
- * @since 1.0.0
- *
- * @return Fuel_Logic_Service_Area Return the singleton Fuel_Logic_Service_Area object.
+ * Plugin Name: Fuel logic Service Area
+ * Description: FL Service ara.
+ * Version: 1.0
+ * Author: Xammis
+ * Author URI: https://xammis.com/
+ * Text Domain: fuel-logic-service-area
+ * Domain Path: /languages/
+ * Requires at least: 5.7
+ * Requires PHP: 7.2
  */
-function Fuel_Logic_Service_Area()
-{
-	return Fuel_Logic_Service_Area::instance();
-}
-Fuel_Logic_Service_Area()->init();
+
+defined('ABSPATH') || exit;
+
+// Path Constants ======================================================================================================
+
+define('FLSA_PLUGIN_URL',             plugins_url() . '/fuel-logic-service-area/');
+define('FLSA_PLUGIN_DIR',             plugin_dir_path(__FILE__));
+define('FLSA_CSS_ROOT_URL',           FLSA_PLUGIN_URL . 'css/');
+define('FLSA_JS_ROOT_URL',            FLSA_PLUGIN_URL . 'js/');
+define('FLSA_TEMPLATES_ROOT_URL',     FLSA_PLUGIN_URL . 'templates/');
+define('FLSA_TEMPLATES_ROOT_DIR',     FLSA_PLUGIN_DIR . 'templates/');
+define('FLSA_BLOCKS_ROOT_URL',        FLSA_PLUGIN_URL . 'blocks/');
+define('FLSA_BLOCKS_ROOT_DIR',        FLSA_PLUGIN_DIR . 'blocks/');
+
+// Require autoloader
+require_once 'inc/autoloader.php';
+
+// State Zipcodes
+require_once 'inc/state-zipcodes.php';
+
+// Require settings
+require_once 'settings/my-first-gutenberg-app.php';
+
+// Run
+require_once 'fuel-logic-service-area.plugin.php';
+$GLOBALS['flsa'] = new Fuel_Logic_Service_Area();
