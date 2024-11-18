@@ -4,13 +4,7 @@ import { useSelect } from "@wordpress/data";
 import {
   __experimentalInputControl as InputControl,
   Button,
-  ButtonGroup,
-  TextControl,
   TextareaControl,
-  Flex,
-  FlexBlock,
-  FlexItem,
-  Icon,
   PanelBody,
   PanelRow,
   ColorPicker,
@@ -103,7 +97,7 @@ export default function Edit(props) {
     bannedMessagePattern,
     bannedStates
   } = attributes;
-  console.log(attributes);
+
   const MY_TEMPLATE = [
     [
       "core/heading",
@@ -134,12 +128,12 @@ export default function Edit(props) {
 
   return (
     <div {...blockProps}>
-      <BlockControls>
+      {/* <BlockControls>
         <AlignmentToolbar
           value={props.attributes.theAlignment}
           onChange={(x) => props.setAttributes({ theAlignment: x })}
         />
-      </BlockControls>
+      </BlockControls> */}
       <InspectorControls>
         <PanelBody title="Settings" initialOpen={true}>
           {hasResolved ? (
@@ -178,15 +172,12 @@ export default function Edit(props) {
         </PanelBody>
       </InspectorControls>
       <div>
-        <InputControl />
-        <ButtonGroup>
-          <Button variant="primary">Submit</Button>
-        </ButtonGroup>
+        <input />
+        <button>Submit</button>
+        {/* <InputControl />
+        <Button variant="primary">Submit</Button> */}
       </div>
-      {/* <InnerBlocks
-                template={ MY_TEMPLATE }
-                templateLock="all"
-            /> */}
+      {/* <InnerBlocks template={MY_TEMPLATE} templateLock="all" /> */}
     </div>
   );
 }

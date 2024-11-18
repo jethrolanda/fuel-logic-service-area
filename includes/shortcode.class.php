@@ -23,6 +23,7 @@ class Shortcode
   {
     add_shortcode('flsa_map', array($this, 'wpdocs_bartag_func'));
     add_shortcode('flsa_form', array($this, 'hubspot_form'));
+    add_shortcode('flsa_zipcode', array($this, 'zipcode'));
   }
 
   /**
@@ -48,16 +49,16 @@ class Shortcode
     ob_start();
 
 
-    echo '<iframe
-            width="600"
-            height="450"
-            style="border:0"
-            loading="lazy"
-            allowfullscreen
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBwHHnwIFReFPErGaAagIu881jQPRMFS8w
-              &q=Space+Needle,Seattle+WA">
-          </iframe>';
+    // echo '<iframe
+    //         width="600"
+    //         height="450"
+    //         style="border:0"
+    //         loading="lazy"
+    //         allowfullscreen
+    //         referrerpolicy="no-referrer-when-downgrade"
+    //         src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBwHHnwIFReFPErGaAagIu881jQPRMFS8w
+    //           &q=Space+Needle,Seattle+WA">
+    //       </iframe>';
     return ob_get_clean();
   }
 
@@ -71,6 +72,14 @@ class Shortcode
     ob_start();
 
     echo 'asdasd';
+    return ob_get_clean();
+  }
+
+  function zipcode($atts)
+  {
+    ob_start();
+
+    echo '<span data-wp-interactive="service-area" data-wp-text="state.urlZipcode"></span>';
     return ob_get_clean();
   }
 }

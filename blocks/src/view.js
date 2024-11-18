@@ -20,25 +20,20 @@ const { state, actions } = store("service-area", {
   state: {
     get hasResult() {
       const context = getContext();
-      console.log(
-        (context.zipfound || context.zipinvalid || context.zipbanned) ?? false
-      );
       return (
         (context.zipfound || context.zipinvalid || context.zipbanned) ?? false
       );
+    },
+    urlZipcode: "",
+    getUrlParamZipcode: () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      console.log(urlParams.get("zipcode"));
+      state.urlZipcode = urlParams.get("zipcode");
     }
   },
   actions: {
     *submit() {
       const context = getContext();
-
-      // if (!is5digits(parseInt(zipcode))) {
-      //   console.log("invalid zipcode");
-      //   context.zipfound = null;
-      //   context.zipinvalid = true;
-      //   context.zipbanned = null;
-      //   context.state = null;
-      // }
 
       const result = state.state_zipcodes.filter(
         (zip) =>
@@ -81,9 +76,10 @@ const { state, actions } = store("service-area", {
       // var url = new URL(state.current_url);
       // url.searchParams.set("zipcode", context.zipcode);
       // console.log(url);
+
+      state.getUrlParamZipcode();
     },
     *goBack() {
-      const { ref } = getElement();
       const context = getContext();
       const { actions } = yield import("@wordpress/interactivity-router");
       yield actions.navigate(`${state.current_url}`);
@@ -92,7 +88,6 @@ const { state, actions } = store("service-area", {
       context.zipbanned = null;
       context.state = null;
       context.zipcode = null;
-      console.log(ref);
     }
   },
   callbacks: {
@@ -100,6 +95,7 @@ const { state, actions } = store("service-area", {
       const context = getContext();
       const { ref } = getElement();
       context.zipcode = ref.value;
+      console.log(ref);
     },
     toggleMessages: () => {
       const context = getContext();
@@ -121,8 +117,8 @@ const { state, actions } = store("service-area", {
     },
     onLoad: () => {
       const context = getContext();
+
       if (context.zipcode > 0) actions.submit();
-      console.log(context.zipcode);
     }
   }
 });

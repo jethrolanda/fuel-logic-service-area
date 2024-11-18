@@ -36,7 +36,7 @@ class Blocks
 
     add_action('enqueue_block_editor_assets', array($this, 'my_block_editor_styles'));
 
-    add_action('wp_loaded', array($this, 'register_patterns'));
+    // add_action('wp_loaded', array($this, 'register_patterns'));
   }
 
   /**
