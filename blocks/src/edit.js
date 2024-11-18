@@ -172,7 +172,8 @@ export default function Edit(props) {
         </PanelBody>
       </InspectorControls>
       <div>
-        <input />
+        <label for="name">Zip Code:</label>
+        <input type="number" min="1" step="1" />
         <button>Submit</button>
         {/* <InputControl />
         <Button variant="primary">Submit</Button> */}
