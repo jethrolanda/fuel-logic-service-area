@@ -1,16 +1,8 @@
-import { useEffect, useState } from "@wordpress/element";
 import { store as coreDataStore } from "@wordpress/core-data";
 import { useSelect } from "@wordpress/data";
 import {
-  __experimentalInputControl as InputControl,
-  Button,
   TextareaControl,
   PanelBody,
-  PanelRow,
-  ColorPicker,
-  CheckboxControl,
-  RadioControl,
-  ToggleControl,
   SelectControl,
   Spinner
 } from "@wordpress/components";
@@ -28,14 +20,7 @@ import { __ } from "@wordpress/i18n";
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import {
-  InspectorControls,
-  BlockControls,
-  AlignmentToolbar,
-  RichText,
-  useBlockProps,
-  InnerBlocks
-} from "@wordpress/block-editor";
+import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -67,16 +52,6 @@ function useCustomPatternBlocks(props) {
   );
 
   return { patterns, hasResolved };
-  // const [data, setData] = useState([]);
-
-  // useEffect(() => {
-  //   const test = wp.data
-  //     .select("core")
-  //     .getEntityRecords("postType", "wp_block", { per_page: -1 });
-  //   setData(test);
-  // }, []);
-
-  // return data;
 }
 
 export default function Edit(props) {
@@ -97,18 +72,6 @@ export default function Edit(props) {
     bannedMessagePattern,
     bannedStates
   } = attributes;
-
-  const MY_TEMPLATE = [
-    [
-      "core/heading",
-      {
-        content:
-          "Check if our services are near your area. Enter your zipcode below."
-      }
-    ],
-    // [ 'core/form-input', { label: 'Enter your zipcode', placeholder: 'Zipcode', required: true } ],
-    ["core/button", { text: "Submit" }]
-  ];
 
   function onChangeSuccessMessagePattern(value) {
     props.setAttributes({ successMessagePattern: value });
@@ -190,11 +153,8 @@ export default function Edit(props) {
             >
               Clear
             </button>
-            {/* <InputControl />
-        <Button variant="primary">Submit</Button> */}
           </div>
         </div>
-        {/* <InnerBlocks template={MY_TEMPLATE} templateLock="all" /> */}
       </div>
     </div>
   );
