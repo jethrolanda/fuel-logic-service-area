@@ -51,7 +51,7 @@ if (isset($attributes['bannedMessagePattern'])) {
     data-wp-init="callbacks.onLoad"
     <?php echo wp_interactivity_data_wp_context($context); ?>
     <?php echo get_block_wrapper_attributes(); ?>>
-    <div class="flex gap-4 justify-center items-center mb-6">
+    <div class="flex gap-4 justify-center items-center mt-10 mb-10">
       <label for="zip-code">Zip Code:</label>
       <input id="zip-code" class="border-2 border-lime-400 rounded-md bg-white py-2 px-4 text-base text-gray-900 " data-wp-bind--value="context.zipcode" value="<?php echo $context['zipcode'] > 0 ? $context['zipcode'] : ''; ?>" type="number" min="1" step="1" data-wp-on--keyup="callbacks.setZipcode">
       <button data-wp-on--click="actions.submit" class="bg-lime-400 py-2 px-6 text-black rounded-md text-md">Submit</button>

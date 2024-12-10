@@ -359,8 +359,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   height: auto;
 }/* Make elements with the HTML hidden attribute stay hidden by default */.fuel-logic-service-area-wrapper-class [hidden]:where(:not([hidden="until-found"])) {
   display: none;
-}.fuel-logic-service-area-wrapper-class .mb-6{
-  margin-bottom: 1.5rem;
+}.fuel-logic-service-area-wrapper-class .mb-10{
+  margin-bottom: 2.5rem;
+}.fuel-logic-service-area-wrapper-class .mt-10{
+  margin-top: 2.5rem;
 }.fuel-logic-service-area-wrapper-class .block{
   display: block;
 }.fuel-logic-service-area-wrapper-class .flex{
