@@ -127,58 +127,75 @@ export default function Edit(props) {
   }
 
   return (
-    <div {...blockProps}>
-      {/* <BlockControls>
+    <div class="fuel-logic-service-area-wrapper-class">
+      <div {...blockProps}>
+        {/* <BlockControls>
         <AlignmentToolbar
           value={props.attributes.theAlignment}
           onChange={(x) => props.setAttributes({ theAlignment: x })}
         />
       </BlockControls> */}
-      <InspectorControls>
-        <PanelBody title="Settings" initialOpen={true}>
-          {hasResolved ? (
-            <>
-              <SelectControl
-                label="Success Message Pattern"
-                value={successMessagePattern}
-                options={options}
-                onChange={onChangeSuccessMessagePattern}
-              />
-              <SelectControl
-                label="Fail Message Pattern"
-                value={failMessagePattern}
-                options={options}
-                onChange={onChangeFailMessagePattern}
-              />
-              <SelectControl
-                label="Banned Message Pattern"
-                value={bannedMessagePattern}
-                options={options}
-                onChange={onChangeBannedMessagePattern}
-              />
-            </>
-          ) : (
-            <div style={{ marginBottom: "10px" }}>
-              Loading Patterns
-              <Spinner />
-            </div>
-          )}
-          <TextareaControl
-            label="Banned States"
-            help="Enter name of states separated with comma. Ex: Hawaii, Alaska"
-            value={bannedStates}
-            onChange={(value) => onChangeTextareaField(value)}
-          />
-        </PanelBody>
-      </InspectorControls>
-      <div>
-        <label for="name">Zip Code:</label>
-        <input type="number" min="1" step="1" />
-        <button>Submit</button>
-        {/* <InputControl />
+        <InspectorControls>
+          <PanelBody title="Settings" initialOpen={true}>
+            {hasResolved ? (
+              <>
+                <SelectControl
+                  label="Success Message Pattern"
+                  value={successMessagePattern}
+                  options={options}
+                  onChange={onChangeSuccessMessagePattern}
+                />
+                <SelectControl
+                  label="Fail Message Pattern"
+                  value={failMessagePattern}
+                  options={options}
+                  onChange={onChangeFailMessagePattern}
+                />
+                <SelectControl
+                  label="Banned Message Pattern"
+                  value={bannedMessagePattern}
+                  options={options}
+                  onChange={onChangeBannedMessagePattern}
+                />
+              </>
+            ) : (
+              <div style={{ marginBottom: "10px" }}>
+                Loading Patterns
+                <Spinner />
+              </div>
+            )}
+            <TextareaControl
+              label="Banned States"
+              help="Enter name of states separated with comma. Ex: Hawaii, Alaska"
+              value={bannedStates}
+              onChange={(value) => onChangeTextareaField(value)}
+            />
+          </PanelBody>
+        </InspectorControls>
+        <div>
+          <div class="flex gap-4 justify-center items-center mt-10 mb-10">
+            <label for="name">Zip Code:</label>
+            <input
+              type="number"
+              min="1"
+              step="1"
+              class="border-2 border-lime-400 rounded-md bg-white py-2 px-4 text-base text-gray-900 "
+            />
+            <button class="bg-lime-400 py-2 px-6 text-black rounded-md text-md">
+              Submit
+            </button>
+            <button
+              class="text-sm text-red-600"
+              data-wp-on--click="actions.clear"
+            >
+              Clear
+            </button>
+            {/* <InputControl />
         <Button variant="primary">Submit</Button> */}
+          </div>
+        </div>
+        {/* <InnerBlocks template={MY_TEMPLATE} templateLock="all" /> */}
       </div>
-      {/* <InnerBlocks template={MY_TEMPLATE} templateLock="all" /> */}
     </div>
   );
 }
