@@ -12,7 +12,6 @@ function useCheckIfBanned(state, bannedStates) {
 }
 
 function is5digits(input) {
-  console.log(input);
   return input.match(/^[/\d]{5}?$/) !== null;
 }
 
@@ -27,7 +26,6 @@ const { state, actions } = store("service-area", {
     urlZipcode: "",
     getUrlParamZipcode: () => {
       const urlParams = new URLSearchParams(window.location.search);
-      console.log(urlParams.get("zipcode"));
       state.urlZipcode = urlParams.get("zipcode");
     }
   },
@@ -47,26 +45,24 @@ const { state, actions } = store("service-area", {
           state.attributes.bannedStates
         );
         if (isBanned) {
-          console.log("banned zipcode");
           context.zipfound = null;
           context.zipinvalid = null;
           context.zipbanned = true;
           context.state = result[0];
         } else {
-          console.log("valid zipcode");
           context.zipfound = true;
           context.zipinvalid = null;
           context.zipbanned = null;
           context.state = result[0];
         }
       } else {
-        console.log("invalid zipcode");
         context.zipfound = null;
         context.zipinvalid = true;
         context.zipbanned = null;
         context.state = null;
       }
       context.submitClicked = true;
+      context.showMessages = true;
 
       const { actions } = yield import("@wordpress/interactivity-router");
       yield actions.navigate(`${state.current_url}?zipcode=${context.zipcode}`);
@@ -88,6 +84,11 @@ const { state, actions } = store("service-area", {
       context.zipbanned = null;
       context.state = null;
       context.zipcode = null;
+    },
+    clear: () => {
+      const context = getContext();
+      context.showMessages = false;
+      actions.goBack();
     }
   },
   callbacks: {
@@ -95,11 +96,6 @@ const { state, actions } = store("service-area", {
       const context = getContext();
       const { ref } = getElement();
       context.zipcode = ref.value;
-      console.log(ref);
-    },
-    toggleMessages: () => {
-      const context = getContext();
-      context.showMessages = true;
     },
     setGoogleMap: () => {
       const context = getContext();
@@ -111,7 +107,6 @@ const { state, actions } = store("service-area", {
         var href = new URL(src);
         href.searchParams.set("q", `${state.code} ${zipcode}`);
         iframe.setAttribute("src", href);
-        console.log(zipcode, state);
       }
       context.submitClicked = false;
     },
