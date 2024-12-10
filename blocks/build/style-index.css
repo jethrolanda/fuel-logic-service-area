@@ -359,6 +359,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   height: auto;
 }/* Make elements with the HTML hidden attribute stay hidden by default */.fuel-logic-service-area-wrapper-class [hidden]:where(:not([hidden="until-found"])) {
   display: none;
+}.fuel-logic-service-area-wrapper-class .mb-6{
+  margin-bottom: 1.5rem;
 }.fuel-logic-service-area-wrapper-class .block{
   display: block;
 }.fuel-logic-service-area-wrapper-class .flex{
@@ -371,17 +373,23 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   gap: 1rem;
 }.fuel-logic-service-area-wrapper-class .rounded-md{
   border-radius: 0.375rem;
+}.fuel-logic-service-area-wrapper-class .border-2{
+  border-width: 2px;
+}.fuel-logic-service-area-wrapper-class .border-lime-400{
+  --tw-border-opacity: 1;
+  border-color: rgb(163 230 53 / var(--tw-border-opacity, 1));
 }.fuel-logic-service-area-wrapper-class .bg-lime-400{
   --tw-bg-opacity: 1;
   background-color: rgb(163 230 53 / var(--tw-bg-opacity, 1));
 }.fuel-logic-service-area-wrapper-class .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}.fuel-logic-service-area-wrapper-class .p-2{
-  padding: 0.5rem;
 }.fuel-logic-service-area-wrapper-class .px-4{
   padding-left: 1rem;
   padding-right: 1rem;
+}.fuel-logic-service-area-wrapper-class .px-6{
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }.fuel-logic-service-area-wrapper-class .py-2{
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -397,6 +405,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }.fuel-logic-service-area-wrapper-class .text-gray-900{
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+}.fuel-logic-service-area-wrapper-class .text-red-600{
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity, 1));
 }.fuel-logic-service-area-wrapper-class .filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
