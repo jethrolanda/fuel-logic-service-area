@@ -145,7 +145,7 @@ export default function Edit(props) {
               class="border-2 border-slate-400 rounded-md bg-white py-2 px-4 text-base text-gray-900 "
             />
             <button class="bg-lime-400 py-2 px-6 text-black rounded-md text-md">
-              Submit
+              SUBMIT
             </button>
             <button
               class="text-sm text-red-600"
