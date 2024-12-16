@@ -61,7 +61,7 @@ export default function Edit(props) {
         return { value: p.id, label: p.title.raw };
       })
     : [];
-  options.unshift({ value: "", label: "Select a Pattern" });
+  options.unshift({ value: 0, label: "Select a Pattern" });
 
   const blockProps = useBlockProps();
 
@@ -142,7 +142,7 @@ export default function Edit(props) {
               type="number"
               min="1"
               step="1"
-              class="border-2 border-lime-400 rounded-md bg-white py-2 px-4 text-base text-gray-900 "
+              class="border-2 border-slate-400 rounded-md bg-white py-2 px-4 text-base text-gray-900 "
             />
             <button class="bg-lime-400 py-2 px-6 text-black rounded-md text-md">
               Submit

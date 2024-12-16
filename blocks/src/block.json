@@ -7,16 +7,20 @@
 	"category": "fuel-logic-service-area-blocks",
 	"attributes": { 
 		"successMessagePattern": {
-			"type": "string"
+			"type": "number",
+			"default": "0"
 		},
 		"failMessagePattern": {
-			"type": "string"
+			"type": "number",
+			"default": "0"
 		},
 		"bannedMessagePattern": {
-			"type": "string"
+			"type": "number",
+			"default": "0"
 		},
 		"bannedStates": {
-			"type": "string"
+			"type": "string",
+			"default": ""
 		}
   },
 	"icon": "media-interactive",
