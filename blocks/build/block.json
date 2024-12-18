@@ -8,15 +8,15 @@
   "attributes": {
     "successMessagePattern": {
       "type": "number",
-      "default": "0"
+      "default": "none"
     },
     "failMessagePattern": {
       "type": "number",
-      "default": "0"
+      "default": "none"
     },
     "bannedMessagePattern": {
       "type": "number",
-      "default": "0"
+      "default": "none"
     },
     "bannedStates": {
       "type": "string",

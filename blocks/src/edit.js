@@ -61,7 +61,7 @@ export default function Edit(props) {
         return { value: p.id, label: p.title.raw };
       })
     : [];
-  options.unshift({ value: 0, label: "Select a Pattern" });
+  options.unshift({ value: "none", label: "Select a Pattern" });
 
   const blockProps = useBlockProps();
 
