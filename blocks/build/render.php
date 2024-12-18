@@ -30,7 +30,7 @@ $context = array(
   'submitClicked' => false,
   'textRef' => null
 );
-error_log(print_r($attributes, true));
+
 $successMessagePattern = '';
 $failMessagePattern = '';
 $bannedMessagePattern = '';
