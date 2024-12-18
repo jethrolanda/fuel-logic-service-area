@@ -26,7 +26,7 @@ $context = array(
   'zipfound' => null,
   'zipinvalid' => null,
   'zipbanned' => null,
-  'state' => array(),
+  'stateData' => array(),
   'submitClicked' => false,
   'textRef' => null
 );

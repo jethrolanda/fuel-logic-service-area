@@ -15,7 +15,7 @@ function is5digits(input) {
   return input.match(/^[/\d]{5}?$/) !== null;
 }
 
-const { state, actions } = store("service-area", {
+const { state, actions, callbacks } = store("service-area", {
   state: {
     get hasResult() {
       const context = getContext();
@@ -33,11 +33,7 @@ const { state, actions } = store("service-area", {
     *submit() {
       const context = getContext();
 
-      const result = state.state_zipcodes.filter(
-        (zip) =>
-          parseInt(context.zipcode) >= parseInt(zip.min) &&
-          parseInt(context.zipcode) <= parseInt(zip.max)
-      );
+      const result = callbacks.checkIfZipcodeExist();
 
       if (result.length > 0) {
         const isBanned = useCheckIfBanned(
@@ -48,20 +44,16 @@ const { state, actions } = store("service-area", {
           context.zipfound = null;
           context.zipinvalid = null;
           context.zipbanned = true;
-          context.state = result[0];
         } else {
           context.zipfound = true;
           context.zipinvalid = null;
           context.zipbanned = null;
-          context.state = result[0];
         }
       } else {
         context.zipfound = null;
         context.zipinvalid = true;
         context.zipbanned = null;
-        context.state = null;
       }
-      context.submitClicked = true;
       context.showMessages = true;
 
       const { actions } = yield import("@wordpress/interactivity-router");
@@ -82,7 +74,6 @@ const { state, actions } = store("service-area", {
       context.zipfound = null;
       context.zipinvalid = null;
       context.zipbanned = null;
-      context.state = null;
       context.zipcode = null;
     },
     clear: () => {
@@ -99,16 +90,26 @@ const { state, actions } = store("service-area", {
     },
     setGoogleMap: () => {
       const context = getContext();
-      const { zipcode, state, submitClicked } = context;
+      const { zipcode } = context;
       const { ref } = getElement();
       const iframe = ref.getElementsByTagName("iframe")[0];
-      if (submitClicked && state && iframe) {
+
+      const result = callbacks.checkIfZipcodeExist();
+
+      if (result.length > 0 && iframe) {
         const src = iframe.getAttribute("src");
         var href = new URL(src);
-        href.searchParams.set("q", `${state.code} ${zipcode}`);
+        href.searchParams.set("q", `${result[0].code} ${zipcode} USA`);
         iframe.setAttribute("src", href);
       }
-      context.submitClicked = false;
+    },
+    checkIfZipcodeExist: () => {
+      const context = getContext();
+      return state.state_zipcodes.filter(
+        (zip) =>
+          parseInt(context.zipcode) >= parseInt(zip.min) &&
+          parseInt(context.zipcode) <= parseInt(zip.max)
+      );
     },
     onLoad: () => {
       const context = getContext();
