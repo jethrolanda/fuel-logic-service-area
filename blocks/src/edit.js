@@ -104,19 +104,31 @@ export default function Edit(props) {
               <>
                 <SelectControl
                   label="Success Message Pattern"
-                  value={successMessagePattern}
+                  value={
+                    parseInt(successMessagePattern) > 0
+                      ? successMessagePattern
+                      : "none"
+                  }
                   options={options}
                   onChange={onChangeSuccessMessagePattern}
                 />
                 <SelectControl
                   label="Fail Message Pattern"
-                  value={failMessagePattern}
+                  value={
+                    parseInt(failMessagePattern) > 0
+                      ? failMessagePattern
+                      : "none"
+                  }
                   options={options}
                   onChange={onChangeFailMessagePattern}
                 />
                 <SelectControl
                   label="Banned Message Pattern"
-                  value={bannedMessagePattern}
+                  value={
+                    parseInt(bannedMessagePattern) > 0
+                      ? bannedMessagePattern
+                      : "none"
+                  }
                   options={options}
                   onChange={onChangeBannedMessagePattern}
                 />
