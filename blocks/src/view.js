@@ -34,7 +34,7 @@ const { state, actions, callbacks } = store("service-area", {
       const context = getContext();
 
       const result = callbacks.checkIfZipcodeExist();
-
+      console.log(result);
       if (result.length > 0) {
         const isBanned = useCheckIfBanned(
           result[0],
@@ -99,7 +99,10 @@ const { state, actions, callbacks } = store("service-area", {
       if (result.length > 0 && iframe) {
         const src = iframe.getAttribute("src");
         var href = new URL(src);
-        href.searchParams.set("q", `${result[0].code} ${zipcode} USA`);
+        href.searchParams.set(
+          "q",
+          `${result[0].title} ${result[0].code} ${zipcode} USA`
+        );
         iframe.setAttribute("src", href);
       }
     },
